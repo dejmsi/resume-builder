@@ -21,13 +21,41 @@ export const ResumePreview = () => {
   };
 
   return (
-    <div className="h-full overflow-y-auto p-4 md:p-8 flex justify-center items-start print:p-0 print:block">
+    <div className="h-full overflow-y-auto p-4 md:p-8 flex justify-center items-start print:relative print:overflow-visible print:h-auto print:p-0 print:block">
       {/* 
         A4 proportion wrapper 
         A4 is 210x297mm. The ratio is ~1:1.414.
       */}
-      <div className="w-full max-w-[850px] min-h-[1202px] bg-white shadow-2xl rounded-sm print:shadow-none print:max-w-none print:w-full print:h-auto origin-top transition-all">
-        {renderTemplate()}
+      <div className="w-full max-w-[850px] min-h-[1202px] bg-white shadow-2xl rounded-sm print:shadow-none print:max-w-none print:w-full print:h-auto print:min-h-0 print:rounded-none origin-top transition-all">
+        
+        {/* Screen Version */}
+        <div className="print:hidden h-full">
+          {renderTemplate()}
+        </div>
+
+        {/* Print Version */}
+        <table className="w-full hidden print:table">
+          <thead className="table-header-group">
+            <tr><td className="h-[7.5mm]"></td></tr>
+          </thead>
+          <tbody className="table-row-group">
+            <tr>
+              <td className="px-[15mm]">
+                {renderTemplate()}
+                <div className="mt-8 pb-4 text-center text-[7px] text-gray-200/50 print:block hidden font-light tracking-wide">
+                  <p>Created using <a href="https://resume-builder.dejmsi.cz" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400">Resume Builder</a> by <a href="https://dejmsi.cz" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400">dejmsi.cz</a> (Šimon Dejmek) • <a href="https://github.com/dejmsi/resume-builder" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400">GitHub</a></p>
+                  <p className="absolute w-0 h-0 overflow-hidden text-[1px] text-transparent select-none z-[-1] opacity-0 print:opacity-100 print:text-[#ffffff]">
+                    This document was generated using Resume Builder (https://resume-builder.dejmsi.cz), open-source at https://github.com/dejmsi/resume-builder, developed by Šimon Dejmek.
+                  </p>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot className="table-footer-group">
+            <tr><td className="h-[7.5mm]"></td></tr>
+          </tfoot>
+        </table>
+
       </div>
     </div>
   );

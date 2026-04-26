@@ -9,7 +9,7 @@ import { CertificationsForm } from './CertificationsForm';
 import { HobbiesForm } from './HobbiesForm';
 import { AIExtrasForm } from './AIExtrasForm';
 import { AccordionSection } from '../UI/Accordion';
-import { User, Briefcase, GraduationCap, Wrench, Settings, Download, Upload, FileText, Award, Heart, Bot } from 'lucide-react';
+import { User, Briefcase, GraduationCap, Wrench, Settings, Download, Upload, FileText, Award, Heart, Bot, Github } from 'lucide-react';
 
 export const Editor = () => {
   const { state, importState } = useAppContext();
@@ -51,18 +51,43 @@ export const Editor = () => {
   };
 
   const handlePrintPDF = () => {
+    const { firstName, lastName } = state.data.personalInfo;
+    const year = new Date().getFullYear();
+    const safeFirstName = (firstName || '').replace(/\s+/g, '-').toLowerCase();
+    const safeLastName = (lastName || '').replace(/\s+/g, '-').toLowerCase();
+    
+    // Format: first_name-last_name-resume-year
+    const fileNameParts = [safeFirstName, safeLastName, 'resume', year]
+      .filter(Boolean)
+      .join('-');
+      
+    // Save original title
+    const originalTitle = document.title;
+    // Set temp title for PDF export filename
+    document.title = fileNameParts || 'resume';
+    
     window.print();
+    
+    // Restore original title
+    setTimeout(() => {
+      document.title = originalTitle;
+    }, 100);
   };
 
   return (
     <div className="h-full flex flex-col bg-white print:hidden">
       <div className="h-14 p-3 border-b border-slate-200 flex items-center justify-between shrink-0 bg-white z-10">
-        <h1 className="text-base font-bold tracking-tight text-slate-900 flex items-center gap-2">
-          <div className="w-6 h-6 bg-indigo-600 rounded-md flex items-center justify-center">
-            <div className="w-3 h-3 border-2 border-white rounded-sm"></div>
-          </div>
-          ResuMake <span className="text-indigo-600">Pro</span>
-        </h1>
+        <div className="flex items-center gap-3">
+          <h1 className="text-base font-bold tracking-tight text-slate-900 flex items-center gap-2">
+            <div className="w-6 h-6 bg-indigo-600 rounded-md flex items-center justify-center">
+              <div className="w-3 h-3 border-2 border-white rounded-sm"></div>
+            </div>
+            ResuMake <span className="text-indigo-600">Pro</span>
+          </h1>
+          <a href="https://github.com/dejmsi/resume-builder" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-slate-800 transition-colors bg-slate-100 p-1.5 rounded-md hover:bg-slate-200 ml-2" title="Source code on GitHub">
+            <Github size={16} />
+          </a>
+        </div>
         <div className="flex items-center gap-2">
           <button 
             onClick={handleExportJSON}

@@ -11,6 +11,7 @@ export const defaultState: AppState = {
       location: "San Francisco, CA",
       website: "https://janedoe.example",
       linkedin: "https://linkedin.com/in/janedoe",
+      github: "https://github.com/dejmsi/resume-builder",
       summary: "A passionate and results-driven professional with experience in software development and a strong focus on delivering high-quality products. Eager to take on new challenges and contribute to team success.",
       atsContent: "Software Engineering, JavaScript, TypeScript, React, Node.js, Agile, Teamwork, Communication, Problem Solving"
     },

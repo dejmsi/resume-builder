@@ -3,7 +3,7 @@ import { AppState } from '../../types';
 
 export const ModernTemplate = ({ data, settings }: { data: AppState['data'], settings: AppState['settings'] }) => {
   return (
-    <div className={`p-8 md:p-10 flex flex-col h-full bg-white text-slate-800 ${settings.fontFamily}`}>
+    <div className={`p-8 md:p-10 flex flex-col h-full print:h-auto print:p-0 bg-white text-slate-800 ${settings.fontFamily}`}>
       <div className="flex justify-between items-start mb-6">
         <div>
           <h3 className="text-2xl font-extrabold tracking-tight uppercase text-slate-900" style={{ color: settings.primaryColor }}>
@@ -15,10 +15,11 @@ export const ModernTemplate = ({ data, settings }: { data: AppState['data'], set
         </div>
         <div className="text-right text-[11px] text-slate-500 space-y-0.5">
           {data.personalInfo.location && <p>{data.personalInfo.location}</p>}
-          {data.personalInfo.email && <p>{data.personalInfo.email}</p>}
-          {data.personalInfo.phone && <p>{data.personalInfo.phone}</p>}
-          {data.personalInfo.website && <p>{data.personalInfo.website}</p>}
-          {data.personalInfo.linkedin && <p>{data.personalInfo.linkedin}</p>}
+          {data.personalInfo.email && <p><a href={`mailto:${data.personalInfo.email}`} className="hover:text-slate-800 transition-colors">{data.personalInfo.email}</a></p>}
+          {data.personalInfo.phone && <p><a href={`tel:${data.personalInfo.phone}`} className="hover:text-slate-800 transition-colors">{data.personalInfo.phone}</a></p>}
+          {data.personalInfo.website && <p><a href={data.personalInfo.website} target="_blank" rel="noopener noreferrer" className="hover:text-slate-800 transition-colors">{data.personalInfo.website.replace(/^https?:\/\//, '')}</a></p>}
+          {data.personalInfo.linkedin && <p><a href={data.personalInfo.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-slate-800 transition-colors">{data.personalInfo.linkedin.replace(/^https?:\/\//, '')}</a></p>}
+          {data.personalInfo.github && <p><a href={data.personalInfo.github} target="_blank" rel="noopener noreferrer" className="hover:text-slate-800 transition-colors">{data.personalInfo.github.replace(/^https?:\/\//, '')}</a></p>}
         </div>
       </div>
 
@@ -30,10 +31,10 @@ export const ModernTemplate = ({ data, settings }: { data: AppState['data'], set
       )}
 
       {data.personalInfo.summary && (
-        <div className="flex gap-4 mb-6">
-          <div className="w-24 shrink-0 border-r border-slate-100">
-            <h4 className="text-[10px] font-bold text-slate-900 uppercase tracking-widest">Profile</h4>
-          </div>
+        <div className="flex gap-4 mb-6 print:break-inside-avoid">
+           <div className="w-24 shrink-0 border-r border-slate-100">
+             <h4 className="text-[10px] font-bold text-slate-900 uppercase tracking-widest">Profile</h4>
+           </div>
           <div className="flex-1">
             <p className="text-[13px] text-slate-600 leading-relaxed tabular-nums">{data.personalInfo.summary}</p>
           </div>
@@ -48,7 +49,7 @@ export const ModernTemplate = ({ data, settings }: { data: AppState['data'], set
             </div>
             <div className="flex-1 space-y-4">
               {data.experience.map(exp => (
-                <div key={exp.id} className="space-y-1">
+                <div key={exp.id} className="space-y-1 print:break-inside-avoid">
                   <div className="flex justify-between items-center">
                     <span className="text-[13px] font-bold text-slate-800">{exp.role}</span>
                     <span className="text-[10px] text-slate-400 font-medium italic">{exp.startDate} – {exp.endDate}</span>
@@ -64,7 +65,7 @@ export const ModernTemplate = ({ data, settings }: { data: AppState['data'], set
         )}
 
         {data.skills.length > 0 && (
-          <div className="flex gap-4">
+          <div className="flex gap-4 print:break-inside-avoid">
             <div className="w-24 shrink-0 border-r border-slate-100">
               <h4 className="text-[10px] font-bold text-slate-900 uppercase tracking-widest">Skills</h4>
             </div>
@@ -75,7 +76,7 @@ export const ModernTemplate = ({ data, settings }: { data: AppState['data'], set
         )}
 
         {(data.certifications || []).length > 0 && (
-          <div className="flex gap-4">
+          <div className="flex gap-4 print:break-inside-avoid">
             <div className="w-24 shrink-0 border-r border-slate-100">
                <h4 className="text-[10px] font-bold text-slate-900 uppercase tracking-widest">Certifications</h4>
             </div>
@@ -97,7 +98,7 @@ export const ModernTemplate = ({ data, settings }: { data: AppState['data'], set
             </div>
             <div className="flex-1 space-y-3">
               {data.education.map(edu => (
-                <div key={edu.id}>
+                <div key={edu.id} className="print:break-inside-avoid">
                   <div className="flex justify-between items-start">
                     <span className="text-[12px] font-bold text-slate-800">{edu.degree}</span>
                     <span className="text-[10px] text-slate-400 italic">{edu.startDate} – {edu.endDate}</span>
@@ -110,7 +111,7 @@ export const ModernTemplate = ({ data, settings }: { data: AppState['data'], set
         )}
 
         {(data.hobbies || []).length > 0 && (
-          <div className="flex gap-4">
+          <div className="flex gap-4 print:break-inside-avoid">
             <div className="w-24 shrink-0 border-r border-slate-100">
                <h4 className="text-[10px] font-bold text-slate-900 uppercase tracking-widest">Interests</h4>
             </div>

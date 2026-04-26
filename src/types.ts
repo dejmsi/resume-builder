@@ -40,6 +40,7 @@ export interface PersonalInfo {
   location: string;
   website: string;
   linkedin: string;
+  github: string;
   summary: string;
   atsContent: string;
 }

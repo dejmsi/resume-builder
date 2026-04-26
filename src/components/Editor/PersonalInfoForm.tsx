@@ -46,10 +46,16 @@ export const PersonalInfoForm = () => {
           <Input name="website" value={personalInfo.website} onChange={handleChange} className="bg-white" />
         </FormGroup>
       </div>
-      <FormGroup className="mb-0">
-        <Label>LinkedIn</Label>
-        <Input name="linkedin" value={personalInfo.linkedin} onChange={handleChange} className="bg-white" />
-      </FormGroup>
+      <div className="grid grid-cols-2 gap-3">
+        <FormGroup className="mb-0">
+          <Label>LinkedIn</Label>
+          <Input name="linkedin" value={personalInfo.linkedin} onChange={handleChange} className="bg-white" />
+        </FormGroup>
+        <FormGroup className="mb-0">
+          <Label>GitHub</Label>
+          <Input name="github" value={personalInfo.github || ''} onChange={handleChange} className="bg-white" />
+        </FormGroup>
+      </div>
       <FormGroup className="mb-0 text-xs">
         <Label>Summary</Label>
         <Textarea name="summary" rows={3} value={personalInfo.summary} onChange={handleChange} className="bg-white" />
