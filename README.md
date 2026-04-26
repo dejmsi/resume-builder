@@ -3,6 +3,7 @@
 This contains everything you need to run your app locally.
 
 View your app in AI Studio: https://ai.studio/apps/747a780c-5ffd-4920-a54b-a090de7bb055
+
 Try on website https://resume-builder.dejmsi.cz
 
 ## Run Locally
