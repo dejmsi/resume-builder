@@ -84,7 +84,7 @@ export const Editor = () => {
             </div>
             ResuMake <span className="text-indigo-600">Pro</span>
           </h1>
-          <a href="https://github.com/dejmsi/resume-builder" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-slate-800 transition-colors bg-slate-100 p-1.5 rounded-md hover:bg-slate-200 ml-2" title="Source code on GitHub">
+          <a href="https://github.com/dejmsi" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-slate-800 transition-colors bg-slate-100 p-1.5 rounded-md hover:bg-slate-200 ml-2" title="GitHub">
             <Github size={16} />
           </a>
         </div>
